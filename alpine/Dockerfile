@@ -1,7 +1,11 @@
-FROM alpine
+FROM golang:alpine
+ENV TERRAFORM_VERSION=0.11.10
+RUN apk add --update git bash openssh
 
-RUN wget https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linux_amd64.zip \
-	&& unzip terraform_0.11.10_linux_amd64.zip \
-	&& mv terraform /bin/ \
-	&& rm -rf terraform*
+ENV TF_DEV=true
+ENV TF_RELEASE=true
 
+WORKDIR $GOPATH/src/github.com/hashicorp/terraform
+RUN git clone https://github.com/hashicorp/terraform.git ./ && \
+    git checkout v${TERRAFORM_VERSION} && \
+    /bin/bash scripts/build.sh
