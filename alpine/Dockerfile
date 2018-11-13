@@ -1,5 +1,4 @@
 FROM alpine:latest
-MAINTAINER "HashiCorp Terraform Team <terraform@hashicorp.com>"
 
 ENV TERRAFORM_VERSION=0.11.10
 ENV TERRAFORM_SHA256SUM=43543a0e56e31b0952ea3623521917e060f2718ab06fe2b2d506cfaa14d54527
